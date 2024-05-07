@@ -1,10 +1,11 @@
 import 'package:calendar/models/day_response_model.dart';
+import 'package:calendar/utils/constants.dart';
 import 'package:dio/dio.dart';
 import '../models/enum_response_model.dart';
 
 class ApiService {
   final Dio dio = Dio(BaseOptions(
-    baseUrl: 'https://www.jsonkeeper.com/b/',
+    baseUrl: Constants.baseUrl,
   ));
 
   Future<Response> get(String path) async {
@@ -17,7 +18,7 @@ class ApiService {
 
   Future<DayResponse> getDays() async {
     try {
-      final response = await get(Routes.daysRoute);
+      final response = await get(Constants.daysRoute);
       return DayResponse.fromJson(response.data);
     } catch (e) {
       rethrow;
@@ -26,15 +27,10 @@ class ApiService {
 
   Future<EnumResponse> getEnums() async {
     try {
-      final response = await get(Routes.enumsRoute);
+      final response = await get(Constants.enumsRoute);
       return EnumResponse.fromJson(response.data);
     } catch (e) {
       rethrow;
     }
   }
-}
-
-class Routes {
-  static const String daysRoute = 'IXGR';
-  static const String enumsRoute = 'I86U';
 }

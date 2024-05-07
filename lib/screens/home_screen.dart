@@ -28,6 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return DateFormat(pattern).format(date);
   }
 
+  void setDate(DateTime selectedTime) {
+    setState(() {
+      date = selectedTime;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
             alignment: WrapAlignment.center,
             runSpacing: 16,
             children: [
-              DateButton(callback: (DateTime selectedTime) {
-                setState(() {
-                  date = selectedTime;
-                });
-              }),
+              DateButton(callback: setDate),
               const Divider(),
               const WeekWidget(),
               BlocBuilder<DayCubit, DayState>(

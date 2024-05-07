@@ -8,4 +8,8 @@ class Constants {
     'SAT',
     'SUN',
   ];
+
+  static const String baseUrl = 'https://www.jsonkeeper.com/b/';
+  static const String daysRoute = 'IXGR';
+  static const String enumsRoute = 'I86U';
 }

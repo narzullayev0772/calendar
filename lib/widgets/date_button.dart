@@ -22,7 +22,7 @@ class _DateButtonState extends State<DateButton> {
           context: context,
           firstDate: firstDate,
           lastDate: lastDate,
-          initialEntryMode: DatePickerEntryMode.input,
+          initialEntryMode: DatePickerEntryMode.calendar,
           initialDatePickerMode: DatePickerMode.year,
         );
         if (selectedTime != null) {
