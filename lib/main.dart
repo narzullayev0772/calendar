@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<DayCubit>(
           create: (context) => DayCubit(),
         ),
+        // Add more Cubit providers here
       ],
       child: MaterialApp(
         title: 'Calendar Widget',
