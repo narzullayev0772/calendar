@@ -4,8 +4,6 @@ import 'package:calendar/widgets/date_button.dart';
 import 'package:calendar/widgets/grid_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-
 import '../widgets/week_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,16 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<DayCubit>().getDays();
   }
 
-  String format(DateTime date, String pattern) {
-    return DateFormat(pattern).format(date);
-  }
-
   void setDate(DateTime selectedTime) {
+    bool isSameMonth = selectedTime.month == date.month;
+    if (isSameMonth) {
+      return;
+    }
     setState(() {
       date = selectedTime;
     });
     // Fetch data from API
     /// TODO: Add API call here
+    context.read<DayCubit>().getDays();
   }
 
   @override
@@ -46,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             alignment: WrapAlignment.center,
             runSpacing: 16,
             children: [
-              DateButton(callback: setDate),
+              DateButton(date: date, callback: setDate),
               const Divider(),
               const WeekWidget(),
               BlocBuilder<DayCubit, DayState>(
